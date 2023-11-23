@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import EditTask from "../modals/EditTask";
-import DeleteTask from "../modals/DeleteTask"
-const TableContent = ({ taskObj, index, deleteTask, updateListArray }) => {
+import DeleteTask from "../modals/DeleteTask";
 
+const TableContent = ({ taskObj, index, deleteTask, updateListArray }) => {
   const [updates, setUpdates] = useState(false);
   const [deletes, setDeletes] = useState(false);
-  
+
   const toggle = () => {
-    setUpdates(!updates)
+    setUpdates(!updates);
     setDeletes(false);
   };
-  
+
   const delToggle = () => {
     setDeletes(!deletes);
-    setUpdates(false)
+    setUpdates(false);
   };
-  
+
   const updateTask = (obj) => {
     updateListArray(obj, index);
   };
@@ -29,23 +29,22 @@ const TableContent = ({ taskObj, index, deleteTask, updateListArray }) => {
       <tr>
         <td>{taskObj.Name}</td>
         <td>{taskObj.Description}</td>
- 
-        <button
-            className="btn btn-primary mr-2"
-            style={{ cursor: "pointer" }}
+        <span>
+          <button
+            className="btn btn-primary"
             onClick={() => setUpdates(true)}
-        >
-        Update
-        </button> 
+            style={{ margin: 5 }}
+          >
+            Update
+          </button>
 
-        <button
-          className="btn btn-secondary"
-          style={{ cursor: "pointer" }}
-          onClick={() => setDeletes(true)}
-        >
-          Delete
-        </button>
-
+          <button
+            className="btn btn-secondary"
+            onClick={() => setDeletes(true)}
+          >
+            Delete
+          </button>
+        </span>
       </tr>
 
       <EditTask
@@ -60,7 +59,6 @@ const TableContent = ({ taskObj, index, deleteTask, updateListArray }) => {
         toggle={delToggle}
         handleDelete={handleDelete}
       />
-
     </>
   );
 };
